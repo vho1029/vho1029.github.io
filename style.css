@@ -1,11 +1,11 @@
 body {
-    font-family: sans-serif;
+    font-family: sans-serif; 
     margin: 0;
     padding: 0;
     /* Background properties */
-    background-image: url('hike.jpg'); 
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-image: url('hike.jpg');
+    background-size: contain; 
+    background-repeat: no-repeat; 
     background-attachment: fixed; /* Maintains background image fixed when scrolling */
     background-position: center center; /* Centers the background image */
     color: #333; /* Defaults text color for readability */
@@ -19,7 +19,7 @@ main {
     flex: 1;
 }
 
-/* Center content */
+/* Center content  */
 .center-content {
     text-align: center;
 }
@@ -32,7 +32,7 @@ main {
     margin-top: 10px;
 }
 
-/* Assignments and Projects Table */
+/* Assignments and Projects Table  */
 .assignments-projects table {
     width: 80%;
     margin: 20px auto;
@@ -59,7 +59,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+a:hover { 
     color: #0056b3; /* Darker blue on hover */
     text-decoration: underline;
 }
@@ -89,6 +89,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #333;
 }
 
+
 footer {
     text-align: center;
     padding: 20px;
@@ -114,3 +115,4 @@ footer p {
     border-left: 4px solid #007bff;
     margin: 10px 0;
 }
+
