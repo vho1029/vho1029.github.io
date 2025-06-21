@@ -1,31 +1,38 @@
-/* General Body Styling and Font */
 body {
-    font-family: sans-serif; /* Changed font to sans-serif */
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
-    /* Background Image Properties */
-    background-image: url('hike.jpg'); /* Corrected: Filename to lowercase */
-    background-size: contain; /* Corrected: Changed to 'contain' to show the whole image without cropping */
-    background-repeat: no-repeat; /* Added: Crucial to prevent tiling with 'contain' */
-    background-attachment: fixed; /* Keeps the background image fixed when scrolling */
-    background-position: center center; /* Added: Centers the background image */
-    color: #333; /* Default text color for readability */
+    /* Background properties */
+    background-image: url('hike.jpg'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Maintains background image fixed when scrolling */
+    background-position: center center; /* Centers the background image */
+    color: #333; /* Defaults text color for readability */
+    min-height: 100vh; /* Ensure body takes the full viewport height */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Center content (for name and image) */
+/* push footer down */
+main {
+    flex: 1;
+}
+
+/* Center content */
 .center-content {
     text-align: center;
 }
 
-/* Headshot styling */
+/* Headshot */
 .headshot {
-    width: 300px; /* Corrected: Set a specific width for the square */
-    height: 300px; /* Corrected: Set the same height as width to force a square shape */
+    width: 300px; /* Adjusted size to make it bigger */
+    height: 300px; /* Adjusted size to match width for a square */
     object-fit: cover; /* Ensures the image covers the square area, cropping if necessary to avoid distortion */
     margin-top: 10px;
 }
 
-/* Assignments and Projects Table Styling */
+/* Assignments and Projects Table */
 .assignments-projects table {
     width: 80%;
     margin: 20px auto;
@@ -44,54 +51,66 @@ body {
 }
 
 .assignments-projects tbody tr:nth-child(even) {
-    background-color: #e6e6e6; /* Slightly darker grey for even rows */
+    background-color: #e6e6e6; /* Slight darker grey for even rows */
 }
 
-/* Link Styling and Hover Effect */
 a {
     color: #007bff; /* Default link color */
     text-decoration: none;
 }
 
-a:hover { /* Hover pseudo-class */
+a:hover {
     color: #0056b3; /* Darker blue on hover */
     text-decoration: underline;
 }
 
-/* Specific Word Styling (Georgia State, Computer Science, and two others) */
 .highlight-red-bold { /* This class will be applied to <span> tags in HTML */
     color: red;
     font-weight: bold;
 }
 
-/* New: Styling for Dream Jobs highlighting */
-.dream-job-highlight { /* This class replaces <b> tags in HTML for dream jobs */
-    color: red; /* Assuming "Highlighted" implies red color, similar to other highlighted words */
+/* Styling for Dream Jobs highlighting */
+.dream-job-highlight { /* class replaces <b> tags in HTML for dream jobs */
+    color: red; /* Assuming "Highlighted" implies red color */
     font-weight: bold;
 }
 
-/* Example styling for sections, you can expand on this */
 section {
-    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent background for content sections */
+    background-color: rgba(255, 255, 255, 0.9); /* Slight more opaque for better readability */
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
-    max-width: 800px; /* Adjusted to 800px for a "zoomed out" appearance */
+    max-width: 800px; /* Adjusted to 800px ZOOM OUT appearance */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Headings styling */
 h1, h2, h3, h4, h5, h6 {
     color: #333;
 }
 
-/* Footer Styling */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #f8f8f8;
+    background-color: rgba(248, 248, 248, 0.95); /* More opaque background */
     margin-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 2px solid #333; /* More visible border */
+    position: relative; /* Ensure proper positioning */
+    z-index: 10; /* Ensure it appears above other elements */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Shadow for depth */
 }
 
-/* Ensure no styling elements/attributes are used in HTML */
-/* This CSS file ensures all styling is defined here, not inline or via old HTML tags. */
+footer p {
+    margin: 0;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Quote section special styling */
+.favorite-quote {
+    font-style: italic;
+    padding: 15px;
+    background-color: rgba(240, 240, 240, 0.5);
+    border-left: 4px solid #007bff;
+    margin: 10px 0;
+}
