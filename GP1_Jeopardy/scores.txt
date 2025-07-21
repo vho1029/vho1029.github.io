@@ -1,0 +1,3 @@
+superman:0
+LexLuthor:800
+superman2:200
