@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // --- DOM Elements ---
+// Victor Ho
+// Part-b: Image Card Matching Game
+// --- DOM Elements ---
     const setupScreen = document.getElementById('setupScreen');
     const gameScreen = document.getElementById('gameScreen');
     const pairCountSelect = document.getElementById('pairCount');
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
     const leaderboardList = document.getElementById('leaderboardList');
     
-    // --- Game State & Settings ---
+// --- Game State & Settings ---
     let settings = {};
     let cards = [];
     let flippedCards = [];
@@ -25,15 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let timeLeft;
     let isBoardLocked = false; // Prevents clicking more than 2 cards at once
 
-    // --- Image Assets ---
-    // You must provide your own images. Find 12 clear, distinct images.
+// --- Image Assets ---
     const IMAGE_SOURCES = [
-        'images/img-1.png', 'images/img-2.png', 'images/img-3.png', 'images/img-4.png',
-        'images/img-5.png', 'images/img-6.png', 'images/img-7.png', 'images/img-8.png',
-        'images/img-9.png', 'images/img-10.png', 'images/img-11.png', 'images/img-12.png'
+        'images/img-1.jpg', 'images/img-2.jpg', 'images/img-3.jpg', 'images/img-4.jpg',
+        'images/img-5.jpg', 'images/img-6.jpg', 'images/img-7.jpg', 'images/img-8.jpg',
+        'images/img-9.jpg', 'images/img-10.jpg', 'images/img-11.jpg', 'images/img-12.jpg'
     ];
     
-    // --- Event Listeners ---
+// --- Event Listeners ---
     startGameBtn.addEventListener('click', initializeGame);
     viewLeaderboardBtn.addEventListener('click', showLeaderboard);
     closeBtn.addEventListener('click', () => leaderboardModal.style.display = 'none');
@@ -43,21 +43,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /**
-     * Sets up and starts the game based on user selections
-     */
+/**
+ * Sets up and starts the game based on user selections
+*/
     function initializeGame() {
-        // Get user settings [cite: 28, 30]
+// Get user settings 
         const numPairs = parseInt(pairCountSelect.value);
         const memorizationTime = parseInt(difficultySelect.value) * 1000;
         
-        // Set game time limit [cite: 33]
+// Set game time limit
         const timeLimits = { 8: 120, 10: 150, 12: 180 };
         timeLeft = timeLimits[numPairs];
         
         settings = { numPairs, memorizationTime, timeLeft };
         
-        // Reset game state
+// Reset game state
         score = 0;
         matchedPairs = 0;
         scoreSpan.textContent = score;
@@ -65,13 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
         gameMessage.textContent = '';
         isBoardLocked = true; // Lock board during memorization
         
-        // Switch screens
+// Switch screens
         setupScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden');
         
         createBoard();
         
-        // Memorization Phase [cite: 30]
+// Memorization Phase 
         gameMessage.textContent = `Memorize the cards! You have ${memorizationTime / 1000} seconds.`;
         revealAllCards(true);
         
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const columns = settings.numPairs === 12 ? 6 : 4;
         gameBoard.style.gridTemplateColumns = `repeat(${columns}, 100px)`;
 
-        // Select, duplicate, and shuffle images [cite: 29]
+        // Select, duplicate, and shuffle images
         let selectedImages = IMAGE_SOURCES.slice(0, settings.numPairs);
         let gameImages = [...selectedImages, ...selectedImages];
         gameImages.sort(() => 0.5 - Math.random()); // Shuffle array
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const [card1, card2] = flippedCards;
         
         if (card1.dataset.id === card2.dataset.id) {
-            // It's a match! [cite: 57, 59]
+            // It's a match! 
             score += 10;
             matchedPairs++;
             card1.classList.add('matched');
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 endGame(true); // Player wins
             }
         } else {
-            // Not a match [cite: 58, 60]
+            // Not a match 
             score -= 5;
             setTimeout(() => {
                 card1.classList.remove('flipped');
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isBoardLocked = true;
         
         if (isWin) {
-            // Optional: Add a simple animation or celebration message [cite: 34]
+            // Add a simple animation or celebration message 
             gameMessage.innerHTML = '<h2>Congratulations, You Win!</h2>';
             setTimeout(() => {
                 const playerName = prompt('You won! Enter your name for the leaderboard:');
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const scores = JSON.parse(localStorage.getItem('memoryGameScores')) || [];
         scores.push({ name, score: finalScore });
         scores.sort((a, b) => b.score - a.score); // Sort descending
-        const topScores = scores.slice(0, 5); // Keep only top 5 [cite: 68]
+        const topScores = scores.slice(0, 5); // Keep only top 5 
         localStorage.setItem('memoryGameScores', JSON.stringify(topScores));
     }
     
