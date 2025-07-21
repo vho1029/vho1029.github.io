@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part B: Memory Game</title>
+    <link rel="stylesheet" href="part-b.css">
+</head>
+<body>
+
+    <div id="setupScreen" class="container setup-screen">
+        <h1>Memory Game Setup</h1>
+        <p>Choose your settings to start the game.</p>
+        
+        <div class="form-group">
+            <label for="pairCount">Number of Pairs:</label>
+            <select id="pairCount">
+                <option value="8">8 Pairs (120s)</option>
+                <option value="10">10 Pairs (150s)</option>
+                <option value="12">12 Pairs (180s)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="difficulty">Memorization Time:</label>
+            <select id="difficulty">
+                <option value="3">Easy (3 seconds)</option>
+                <option value="5">Medium (5 seconds)</option>
+                <option value="8">Hard (8 seconds)</option>
+            </select>
+        </div>
+        
+        <button id="startGameBtn">Start Game</button>
+    </div>
+
+    <div id="gameScreen" class="container game-screen hidden">
+        <div class="game-info">
+            <div>Time Left: <span id="timer">120</span>s</div>
+            <div>Score: <span id="score">0</span></div>
+        </div>
+        <div id="gameBoard" class="game-board"></div>
+        <div id="gameMessage" class="game-message"></div>
+        <button id="viewLeaderboardBtn" class="leaderboard-btn">View Leaderboard</button>
+    </div>
+
+    <div id="leaderboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Top 5 Scores</h2>
+            <ol id="leaderboardList"></ol>
+        </div>
+    </div>
+
+    <script src="part-b.js"></script>
+</body>
+</html>
