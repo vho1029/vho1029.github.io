@@ -104,11 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
             card.dataset.id = imgSrc;
 
             card.innerHTML = `
-                <div class="card-face card-front">?</div>
-                <div class="card-face card-back">
-                    <img src="${imgSrc}" alt="Card Image">
-                </div>
-            `;
+    <div class="card-face card-front">${index + 1}</div>
+    <div class="card-face card-back">
+        <img src="${imgSrc}" alt="Card Image">
+    </div>
+`;
             
             card.addEventListener('click', () => handleCardClick(card));
             gameBoard.appendChild(card);
