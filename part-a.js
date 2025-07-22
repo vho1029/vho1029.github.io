@@ -1,3 +1,6 @@
+//Victor Ho
+//Part-a: Number Guessing Game
+
 // Wait for the DOM to fully load before running the script
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -12,11 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const winSound = document.getElementById('winSound');
     const loseSound = document.getElementById('loseSound');
     const clickSound = document.getElementById('clickSound');
+    const backgroundMusic = document.getElementById('backgroundMusic');
 
     // Game State Variables
     let secretNumber;
     let remainingGuesses;
     let gameActive = true;
+    let isFirstGuess = true; // Flag to handle audio autoplay policy
     let secondsElapsed = 0;
     let clockInterval;
 
@@ -24,19 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
      * Starts a new game by resetting variables and the UI
      */
     function newGame() {
-        // Pick a new secret number between 1 and 100
         secretNumber = Math.floor(Math.random() * 100) + 1;
-        remainingGuesses = 10; // As per the assignment example [cite: 25]
+        remainingGuesses = 10;
         gameActive = true;
         
-        // Reset UI elements
         guessesLeftSpan.textContent = remainingGuesses;
         message.textContent = '';
         guessInput.value = '';
         guessInput.disabled = false;
         guessButton.disabled = false;
+        
+        // Restore background music volume for the new game
+        backgroundMusic.volume = 1.0;
 
-        // Reset and start the clock
         secondsElapsed = 0;
         clearInterval(clockInterval);
         startClock();
@@ -48,12 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleGuess() {
         if (!gameActive) return;
 
-        // Play a click sound on each guess
-        clickSound.play();
+        // Start background music on the first user interaction to comply with browser policies
+        if (isFirstGuess) {
+            backgroundMusic.play();
+            isFirstGuess = false;
+        }
+
+        clickSound.play(); // Cartoon whistle for each guess
 
         const playerGuess = parseInt(guessInput.value, 10);
 
-        // Input validation
         if (isNaN(playerGuess) || playerGuess < 1 || playerGuess > 100) {
             message.textContent = 'Please enter a number between 1 and 100.';
             return;
@@ -80,7 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function winGame() {
         message.textContent = `Correct! The number was ${secretNumber}. A new game will start.`;
-        winSound.play();
+        backgroundMusic.volume = 0.3; // Lower background music volume
+        winSound.play(); // Trumpet fanfare for a win
         endGame();
     }
 
@@ -89,7 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function loseGame() {
         message.textContent = `You lost! The secret number was ${secretNumber}. A new game will start.`;
-        loseSound.play();
+        backgroundMusic.volume = 0.3; // Lower background music volume
+        loseSound.play(); // Sad trombone for a loss
         endGame();
     }
 
@@ -102,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         guessButton.disabled = true;
         clearInterval(clockInterval);
         
-        // Start a new game after a short delay
         setTimeout(newGame, 4000);
     }
     
